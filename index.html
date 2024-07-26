@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>动态视频源</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      video {
+        width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body onload="setVideoSource()">
+    <video
+      id="myVideo"
+      controls="controls"
+      style="height: 500px; width: 100%; max-width: 100%"
+      loop="true"
+      draggable="true"
+    >
+      <!-- 视频源将通过JavaScript动态设置 -->
+      您的浏览器不支持 video 标签。
+    </video>
+
+    <script>
+      function setVideoSource() {
+        const urlParams = new URLSearchParams(window.location.search)
+        const videoId = urlParams.get('videoId')
+
+        if (videoId) {
+          const videoElement = document.getElementById('myVideo')
+          // 假设你的视频存储在某个CDN，视频ID用于构建视频URL
+          videoElement.src = videoId
+        }
+      }
+    </script>
+  </body>
+</html>
